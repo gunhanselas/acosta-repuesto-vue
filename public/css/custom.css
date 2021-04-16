@@ -1,0 +1,106 @@
+/* your styles go here */
+.cuadros-home {
+    margin-top: 2rem;
+    justify-content: space-around;
+    display: flex;
+    margin-bottom: 4rem;
+}
+
+/* -------- Cuadro 1 de home ------- */
+
+.cuadro1-home {
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.18);
+    border-radius: 25px;
+    overflow: hidden;
+    max-width: 40%;
+    display: inline-block;
+    background: white;
+    padding-bottom: 1rem;
+}
+
+.cuadros-text-home {
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    color: #adb5bd;
+    font-weight: 400;
+}
+
+.cuadro1-home:hover {
+    color: white;
+    background: linear-gradient(to left, #e2703a40, #840000) !important;
+    cursor: pointer;
+}
+
+.cuadro1-home:hover .cuadros-text-home {
+    color: white;
+}
+
+/* -------- Cuadro 2 de home ------- */
+
+.cuadro2-home {
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.18);
+    border-radius: 25px;
+    overflow: hidden;
+    max-width: 40%;
+    display: inline-block;
+    background: white;
+    padding-bottom: 1rem;
+}
+
+.cuadro2-home:hover {
+    color: white;
+    background: linear-gradient(to left, #f7d3b894, #cba48c) !important;
+    cursor: pointer;
+}
+
+.cuadro2-home:hover .cuadros-text-home {
+    color: white;
+}
+
+/* -------- Cuadro 3 de home ------- */
+
+.cuadro3-home {
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.18);
+    border-radius: 25px;
+    overflow: hidden;
+    max-width: 40%;
+    display: inline-block;
+    background: white;
+    padding-bottom: 1rem;
+}
+
+.cuadro3-home:hover {
+    color: white;
+    background: linear-gradient(to left, #fdeac9, #cc8a40) !important;
+    cursor: pointer;
+}
+
+.cuadro3-home:hover .cuadros-text-home {
+    color: white;
+}
+
+/* -------- Cuadro 4 de home ------- */
+
+.cuadro4-home {
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.18);
+    border-radius: 25px;
+    overflow: hidden;
+    max-width: 40%;
+    display: inline-block;
+    background: white;
+    padding-bottom: 1rem;
+}
+
+.cuadro4-home:hover {
+    color: white;
+    background: linear-gradient(to left, #9cf5d8, #006c54) !important;
+    cursor: pointer;
+}
+
+.cuadro4-home:hover .cuadros-text-home {
+    color: white;
+}
+
+.footer-margin{
+    margin-top: 2rem;
+}
