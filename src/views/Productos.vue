@@ -7,16 +7,13 @@
             <h6 class="text-uppercase mb-0" style="display: inline-block">
               Productos
             </h6>
-            <button
-              type="button"
-              @click="clearData()"
-              class="btn btn-success"
-              style="float: right"
-              data-toggle="modal"
-              data-target="#agregarProducto"
+            <b-button
+              v-b-modal.modalAddProd
+              variant="success"
+              v-on:click="clearData()"
             >
               <i class="fa fa-plus" aria-hidden="true"></i>
-            </button>
+            </b-button>
           </div>
           <div class="card-body">
             <div class="form-group position-relative mb-0">
@@ -36,7 +33,13 @@
             </div>
 
             <b-nav tabs fill>
-              <b-nav-item v-for="(cat,index) in categorias" :key="index" :active="tab === cat.nombreCat" @click="tab = cat.nombreCat">{{cat.nombreCat}}</b-nav-item>
+              <b-nav-item
+                v-for="(cat, index) in categorias"
+                :key="index"
+                :active="tab === cat.nombreCat"
+                @click="tab = cat.nombreCat"
+                >{{ cat.nombreCat }}</b-nav-item
+              >
             </b-nav>
 
             <table class="table card-text table-hover">
@@ -55,7 +58,7 @@
               <tbody>
                 <tr
                   v-for="(prod, index) in productos"
-                  v-show="filtro(index) && prod.nombreCategoria===tab"
+                  v-show="filtro(index) && prod.nombreCategoria === tab"
                   :key="index"
                 >
                   <th>{{ prod.upc }}</th>
@@ -91,29 +94,30 @@
           </div>
         </div>
       </div>
+      <AgregarProd></AgregarProd>
     </div>
   </div>
 </template>
 
 <script>
-// import AgregarCat from "@/components/Categorias/AgregarCat.vue";
+import AgregarProd from "@/components/Productos/AgregarProd.vue";
 import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "Productos",
   components: {
-    // AgregarCat,
+    AgregarProd,
   },
   data: () => {
     return {
       displayOption: "",
       searchDisplay: "",
       urlApi: `http://localhost:8080/categoria`,
-      tab: ""
+      tab: "",
     };
   },
   methods: {
-    ...mapMutations("categorias", ["clearData", "getCategoriaSelected"]),
+    ...mapMutations("productos", ["clearData"]),
 
     filtro(valor) {
       if (this.searchDisplay.trim() === "") return true;
@@ -136,9 +140,20 @@ export default {
      */
   mounted() {
     //para setear como active el tab del inicio
-    this.tab=this.categorias[0].nombreCat
+    this.tab = this.categorias[0].nombreCat;
 
     //this.getAll();
   },
 };
 </script>
+<style scoped>
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #ffffff !important;
+  background-color: #e84b63 !important;
+}
+.nav-tabs .nav-link:hover {
+  color: #e10d2d;
+  background-color: #f1f1f1;
+}
+</style>

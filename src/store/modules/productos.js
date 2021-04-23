@@ -26,6 +26,18 @@ export default {
             upc: 37842,
             nombreMarca: "BMW",
             nombreCategoria: "Cascos"
+        },
+        {
+            idMarca: 2,
+            nombreProd: "22 pulgadas",
+            activoProd: true,
+            descripcion: "Llantas para motos",
+            idCategoria: 3,
+            precioUnit: 24.50,
+            stockProd: 7,
+            upc: 23471,
+            nombreMarca: "Dunlop",
+            nombreCategoria: "Llantas"
         }],
         producto: {
             idMarca: null,

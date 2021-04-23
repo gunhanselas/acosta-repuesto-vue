@@ -10,33 +10,46 @@
         tag="a"
         to="/"
         class="sidebar-link text-muted sidebar-list-item"
-        :class="this.$router.currentRoute.path === '/' ? 'active' : ''"
         exact
+        v-slot="{ href, navigate }"
+        custom
+        :class="this.$route.path === '/' ? 'active' : ''"
       >
-        <i class="fas fa-home mr-4 text-gray my-2"></i
-        ><span>Home</span>
+        <a :href="href" @click="navigate">
+          <i class="fas fa-home mr-4 text-gray my-2"></i><span>Home</span>
+        </a>
       </router-link>
       <router-link
         tag="a"
         to="/categorias"
         class="sidebar-link text-muted sidebar-list-item"
+        v-slot="{ href, navigate }"
+        custom
         :class="this.$route.path === '/categorias' ? 'active' : ''"
       >
-        <i class="fa fa-list-alt mr-4 text-gray my-2"></i
-        ><span>Categorias</span>
+        <a :href="href" @click="navigate">
+          <i class="fa fa-list-alt mr-4 text-gray my-2"></i
+          ><span>Categorias</span>
+        </a>
       </router-link>
+
       <li class="sidebar-list-item">
         <a href="marca.html" class="sidebar-link text-muted">
           <i class="fas fa-list-ul mr-4 text-gray my-2"></i><span>Marca</span>
         </a>
       </li>
+
       <router-link
         tag="a"
         to="/productos"
         class="sidebar-link text-muted sidebar-list-item"
+        v-slot="{ href, navigate }"
+        custom
         :class="this.$route.path === '/productos' ? 'active' : ''"
       >
-        <i class="fas fa-boxes mr-3 text-gray my-2"></i><span>Productos</span>
+        <a :href="href" @click="navigate">
+          <i class="fas fa-boxes mr-3 text-gray my-2"></i><span>Productos</span>
+        </a>
       </router-link>
       <li class="sidebar-list-item">
         <a href="ordenes.html" class="sidebar-link text-muted">
