@@ -25,6 +25,7 @@
         <div class="cuadros-text-home">Editar, eliminar, agregar o listar</div>
       </div>
       <div class="cuadro2-home" onclick="referMar()">
+        <router-link to="/marcas">
         <img src="/img/2.png" alt="..." style="max-width: 100%" />
         <div
           class="font-weight-bold d-block"
@@ -33,6 +34,7 @@
           Marcas
         </div>
         <div class="cuadros-text-home">Editar, eliminar, agregar o listar</div>
+        </router-link>
       </div>
     </div>
     <div class="cuadros-home">

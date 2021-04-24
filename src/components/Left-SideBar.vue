@@ -32,13 +32,19 @@
           ><span>Categorias</span>
         </a>
       </router-link>
-
-      <li class="sidebar-list-item">
-        <a href="marca.html" class="sidebar-link text-muted">
-          <i class="fas fa-list-ul mr-4 text-gray my-2"></i><span>Marca</span>
+      <router-link
+      tag="a"
+      to="/marcas"
+      class="sidebar-link text-muted sidebar-list-item"
+      v-slot="{href, navigate}"
+      custom
+      :class="this.$route.path === '/marcas' ? 'active':''"
+      >
+        <a :href="href" @click="navigate">
+          <i class="fas fa-list-ul mr-4 text-gray my-2"></i>
+          <span>Marca</span>
         </a>
-      </li>
-
+      </router-link>
       <router-link
         tag="a"
         to="/productos"
