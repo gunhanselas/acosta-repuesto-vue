@@ -8,9 +8,8 @@
               Productos
             </h6>
             <b-button
-              v-b-modal.modalAddProd
               variant="success"
-              v-on:click="clearData()"
+              v-on:click="addProd()"
             >
               <i class="fa fa-plus" aria-hidden="true"></i>
             </b-button>
@@ -34,8 +33,8 @@
 
             <b-nav tabs fill>
               <b-nav-item
-                v-for="(cat, index) in categorias"
-                :key="index"
+                v-for="(cat) in categorias"
+                :key="cat.nombreCat"
                 :active="tab === cat.nombreCat"
                 @click="tab = cat.nombreCat"
                 >{{ cat.nombreCat }}</b-nav-item
@@ -48,7 +47,6 @@
                   <th>Código</th>
                   <th>Nombre</th>
                   <th>Marca</th>
-                  <th>Categoria</th>
                   <th>Precio</th>
                   <th>Descripción</th>
                   <th>Stock</th>
@@ -57,17 +55,59 @@
               </thead>
               <tbody>
                 <tr
-                  v-for="(prod, index) in productos"
+                  v-for="(prod, index) in newProd"
                   v-show="filtro(index) && prod.nombreCategoria === tab"
-                  :key="index"
+                  :key="index+'prod'"
                 >
-                  <th>{{ prod.upc }}</th>
-                  <td>{{ prod.nombreProd }}</td>
-                  <td>{{ prod.nombreMarca }}</td>
-                  <td>{{ prod.nombreCategoria }}</td>
-                  <td>${{ prod.precioUnit }}</td>
-                  <td>{{ prod.descripcion }}</td>
-                  <td>{{ prod.stockProd }}</td>
+                  <th>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.upc"
+                      class="form-control font-weight-bold"
+                      :class="inputBlankOrFilled(prod.upc)?'inputDanger':'inputSuccess'"
+                    />
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.nombreProd"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.nombreMarca"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.precioUnit"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.descripcion"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.stockProd"
+                      class="form-control"
+                    />
+                  </td>
                   <td>
                     <button
                       type="button"
@@ -78,14 +118,70 @@
                     >
                       <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
+                  </td>
+                </tr>
+                <tr
+                  v-for="(prod, index) in productos"
+                  v-show="filtro(index) && prod.nombreCategoria === tab"
+                  :key="index"
+                >
+                  <th>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.upc"
+                      class="form-control font-weight-bold"
+                    />
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.nombreProd"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.nombreMarca"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.precioUnit"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.descripcion"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
+                      v-model="prod.stockProd"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
                     <button
                       type="button"
                       @click="getProductoSelected(prod)"
-                      class="btn btn-warning"
+                      class="btn btn-danger"
                       data-toggle="modal"
-                      data-target="#editarProducto"
+                      data-target="#eliminarProducto"
                     >
-                      <i class="fa fa-edit" aria-hidden="true"></i>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                   </td>
                 </tr>
@@ -114,6 +210,7 @@ export default {
       searchDisplay: "",
       urlApi: `http://localhost:8080/categoria`,
       tab: "",
+      newProd: [],
     };
   },
   methods: {
@@ -130,6 +227,22 @@ export default {
       ).toUpperCase();
       return array.indexOf(this.searchDisplay.toUpperCase()) >= 0;
     },
+    addProd() {
+      var producto = {
+        nombreProd: "",
+        activoProd: true,
+        descripcion: "",
+        precioUnit: null,
+        stockProd: null,
+        upc: null,
+        nombreMarca: "",
+        nombreCategoria: this.tab,
+      };
+      this.newProd.push(producto);
+    },
+    inputBlankOrFilled(cadenaDeTexto){
+      return cadenaDeTexto.trim().length != 0;
+    }
   },
   computed: {
     ...mapState("productos", ["productos", "producto"]),
@@ -155,5 +268,21 @@ export default {
 .nav-tabs .nav-link:hover {
   color: #e10d2d;
   background-color: #f1f1f1;
+}
+tr:hover input.form-control {
+  background-color: #ececec !important;
+}
+tr input.form-control {
+  /* border: thin; */
+  height: auto;
+}
+thead {
+  text-align: center;
+}
+.inputDanger{
+  border-color: red;
+}
+.inputSuccess{
+  border-color: #28a745;
 }
 </style>
