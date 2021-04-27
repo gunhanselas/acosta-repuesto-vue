@@ -14,31 +14,37 @@
       Esto es lo que puedes hacer:
     </h1>
     <div class="cuadros-home">
-      <div class="cuadro1-home" onclick="referProd()">
-        <img src="/img/motul.png" alt="..." style="max-width: 100%" />
-        <div
-          class="font-weight-bold d-block"
-          style="margin: 1rem; font-size: 2.5rem"
-        >
-          Productos
-        </div>
-        <div class="cuadros-text-home">Editar, eliminar, agregar o listar</div>
+      <div class="cuadro1-home">
+        <router-link to="/productos">
+          <img src="/img/motul.png" alt="..." style="max-width: 100%" />
+          <div
+            class="font-weight-bold d-block"
+            style="margin: 1rem; font-size: 2.5rem"
+          >
+            Productos
+          </div>
+          <div class="cuadros-text-home">
+            Editar, eliminar, agregar o listar
+          </div>
+        </router-link>
       </div>
-      <div class="cuadro2-home" onclick="referMar()">
+      <div class="cuadro2-home">
         <router-link to="/marcas">
-        <img src="/img/2.png" alt="..." style="max-width: 100%" />
-        <div
-          class="font-weight-bold d-block"
-          style="margin: 1rem; font-size: 2.5rem"
-        >
-          Marcas
-        </div>
-        <div class="cuadros-text-home">Editar, eliminar, agregar o listar</div>
+          <img src="/img/2.png" alt="..." style="max-width: 100%" />
+          <div
+            class="font-weight-bold d-block"
+            style="margin: 1rem; font-size: 2.5rem"
+          >
+            Marcas
+          </div>
+          <div class="cuadros-text-home">
+            Editar, eliminar, agregar o listar
+          </div>
         </router-link>
       </div>
     </div>
     <div class="cuadros-home">
-      <div class="cuadro3-home" onclick="referCat()">
+      <div class="cuadro3-home">
         <router-link to="/categorias">
           <img src="/img/3.png" alt="..." style="max-width: 100%" />
           <div
@@ -52,7 +58,7 @@
           </div>
         </router-link>
       </div>
-      <div class="cuadro4-home" onclick="referOrd()">
+      <div class="cuadro4-home">
         <img src="/img/4.png" alt="..." style="max-width: 100%" />
         <div
           class="font-weight-bold d-block"
@@ -67,11 +73,12 @@
 </template>
 
 <style scoped>
-a:hover, a:focus {
-    color: #ffffff;
-    text-decoration: none;
+a:hover,
+a:focus {
+  color: #ffffff;
+  text-decoration: none;
 }
-a{
+a {
   color: #212529;
 }
 </style>
