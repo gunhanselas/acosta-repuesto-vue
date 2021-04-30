@@ -7,10 +7,7 @@
             <h6 class="text-uppercase mb-0" style="display: inline-block">
               Productos
             </h6>
-            <b-button
-              variant="success"
-              v-on:click="addProd()"
-            >
+            <b-button variant="success" v-on:click="addProd()">
               <i class="fa fa-plus" aria-hidden="true"></i>
             </b-button>
           </div>
@@ -33,7 +30,7 @@
 
             <b-nav tabs fill>
               <b-nav-item
-                v-for="(cat) in categorias"
+                v-for="cat in categorias"
                 :key="cat.nombreCat"
                 :active="tab === cat.nombreCat"
                 @click="tab = cat.nombreCat"
@@ -57,7 +54,7 @@
                 <tr
                   v-for="(prod, index) in newProd"
                   v-show="filtro(index) && prod.nombreCategoria === tab"
-                  :key="index+'prod'"
+                  :key="index + 'prod'"
                 >
                   <th>
                     <input
@@ -65,7 +62,6 @@
                       v-autowidth="{ maxWidth: '150px', minWidth: '10px' }"
                       v-model="prod.upc"
                       class="form-control font-weight-bold"
-                      :class="inputBlankOrFilled(prod.upc)?'inputDanger':'inputSuccess'"
                     />
                   </th>
                   <td>
@@ -176,7 +172,7 @@
                   <td>
                     <button
                       type="button"
-                      @click="getProductoSelected(prod)"
+                      @click="removeRegistro(prod)"
                       class="btn btn-danger"
                       data-toggle="modal"
                       data-target="#eliminarProducto"
@@ -240,12 +236,17 @@ export default {
       };
       this.newProd.push(producto);
     },
-    inputBlankOrFilled(cadenaDeTexto){
-      return cadenaDeTexto.trim().length != 0;
-    }
+    inputBlankOrFilled(cadenaDeTexto) {
+      try {
+        return cadenaDeTexto.trim().length != 0;
+      } catch (error) {
+        console.log(error);
+        return true;
+      }
+    },
   },
   computed: {
-    ...mapState("productos", ["productos", "producto"]),
+    ...mapState("productos", ["productos", "producto","removeRegistro"]),
     ...mapState("categorias", ["categorias"]),
   },
   /*
@@ -279,10 +280,10 @@ tr input.form-control {
 thead {
   text-align: center;
 }
-.inputDanger{
+/* .inputDanger {
   border-color: red;
 }
-.inputSuccess{
+.inputSuccess {
   border-color: #28a745;
-}
+} */
 </style>

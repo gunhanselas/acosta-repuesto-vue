@@ -147,7 +147,12 @@ export default {
         /*
         eliman registros, correspondiente al id seleccionado
          */
-        removeRegistro: function () {
+        removeRegistro: function (state) {
+            state.producto.activoProd = false;
+            this.clearData();
+            let x = 0;
+            if (x === 0) return console.log("");
+
             axios.put(urlApi + "/remove/" + this.producto.upc).then(
                 response => {
                     this.getAll();

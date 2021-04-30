@@ -16,6 +16,7 @@ Vue.use(BootstrapVue)
 Vue.use(VueInputAutowidth)
 
 Vue.config.productionTip = false
+Vue.config.silent = true
 
 new Vue({
   router,
