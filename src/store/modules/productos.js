@@ -5,40 +5,41 @@ export default {
     namespaced: true,
     state: {
         productos: [{
-            idMarca: 0,
-            nombreProd: "20W50",
-            activoProd: true,
-            descripcion: "Lubricante para motos",
-            idCategoria: 3,
-            precioUnit: 5,
-            stockProd: 100,
-            upc: 53260,
-            nombreMarca: "Motul",
-            nombreCategoria: "Lubricantes"
-        }, {
-            idMarca: 1,
-            nombreProd: "System 7 Blanco",
-            activoProd: true,
-            descripcion: "Carcasa completa de carbono",
-            idCategoria: 1,
-            precioUnit: 57.99,
-            stockProd: 16,
-            upc: 37842,
-            nombreMarca: "BMW",
-            nombreCategoria: "Cascos"
-        },
-        {
-            idMarca: 2,
-            nombreProd: "22 pulgadas",
-            activoProd: true,
-            descripcion: "Llantas para motos",
-            idCategoria: 3,
-            precioUnit: 24.50,
-            stockProd: 7,
-            upc: 23471,
-            nombreMarca: "Dunlop",
-            nombreCategoria: "Llantas"
-        }],
+                idMarca: 0,
+                nombreProd: "20W50",
+                activoProd: true,
+                descripcion: "Lubricante para motos",
+                idCategoria: 3,
+                precioUnit: 5,
+                stockProd: 100,
+                upc: 53260,
+                nombreMarca: "Motul",
+                nombreCategoria: "Lubricantes"
+            }, {
+                idMarca: 1,
+                nombreProd: "System 7 Blanco",
+                activoProd: true,
+                descripcion: "Carcasa completa de carbono",
+                idCategoria: 1,
+                precioUnit: 57.99,
+                stockProd: 16,
+                upc: 37842,
+                nombreMarca: "BMW",
+                nombreCategoria: "Cascos"
+            },
+            {
+                idMarca: 2,
+                nombreProd: "22 pulgadas",
+                activoProd: true,
+                descripcion: "Llantas para motos",
+                idCategoria: 3,
+                precioUnit: 24.50,
+                stockProd: 7,
+                upc: 23471,
+                nombreMarca: "Dunlop",
+                nombreCategoria: "Llantas"
+            }
+        ],
         producto: {
             idMarca: null,
             nombreProd: "",
@@ -147,9 +148,9 @@ export default {
         /*
         eliman registros, correspondiente al id seleccionado
          */
-        removeRegistro: function (state) {
-            state.producto.activoProd = false;
-            this.clearData();
+        removeRegistro: function (state,producto) {
+            producto.activoProd = false;
+            // this.clearData();
             let x = 0;
             if (x === 0) return console.log("");
 
@@ -186,7 +187,7 @@ export default {
         /*
         limpiando valores de la marca previamente seleccionada
          */
-        clearData() {
+        clearData: function () {
             this.producto = {
                 idMarca: null,
                 nombreProd: "",

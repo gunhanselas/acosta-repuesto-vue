@@ -1,7 +1,7 @@
 <template>
   <div id="domVue" class="page-holder w-100 d-flex flex-wrap">
     <div class="container-fluid px-xl-5">
-      <div style="margin-top: 2rem">
+      <div style="margin-top: 2rem; margin-bottom: 3rem">
         <div class="card">
           <div class="card-header">
             <h6 class="text-uppercase mb-0" style="display: inline-block">
@@ -47,14 +47,19 @@
                   <th>Precio</th>
                   <th>Descripción</th>
                   <th>Stock</th>
-                  <th>Operaciones</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   v-for="(prod, index) in newProd"
-                  v-show="filtro(index) && prod.nombreCategoria === tab"
+                  v-show="
+                    filtro(index) &&
+                    prod.nombreCategoria === tab &&
+                    prod.activoProd
+                  "
                   :key="index + 'prod'"
+                  style="border-left: 0.5rem solid #52bb71"
                 >
                   <th>
                     <input
@@ -107,18 +112,23 @@
                   <td>
                     <button
                       type="button"
-                      @click="getProductoSelected(prod)"
-                      class="btn btn-danger"
+                      @click="removeRegistro(prod)"
+                      class="btn btn-outline-danger btn-circle"
                       data-toggle="modal"
                       data-target="#eliminarProducto"
                     >
-                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      <i class="fas fa-times" aria-hidden="true"></i>
+                      <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
                     </button>
                   </td>
                 </tr>
                 <tr
                   v-for="(prod, index) in productos"
-                  v-show="filtro(index) && prod.nombreCategoria === tab"
+                  v-show="
+                    filtro(index) &&
+                    prod.nombreCategoria === tab &&
+                    prod.activoProd
+                  "
                   :key="index"
                 >
                   <th>
@@ -173,11 +183,12 @@
                     <button
                       type="button"
                       @click="removeRegistro(prod)"
-                      class="btn btn-danger"
+                      class="btn btn-outline-danger btn-circle"
                       data-toggle="modal"
                       data-target="#eliminarProducto"
                     >
-                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
+                      <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                   </td>
                 </tr>
@@ -210,7 +221,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("productos", ["clearData"]),
+    ...mapMutations("productos", ["clearData", "removeRegistro"]),
 
     filtro(valor) {
       if (this.searchDisplay.trim() === "") return true;
@@ -246,7 +257,7 @@ export default {
     },
   },
   computed: {
-    ...mapState("productos", ["productos", "producto","removeRegistro"]),
+    ...mapState("productos", ["productos", "producto"]),
     ...mapState("categorias", ["categorias"]),
   },
   /*
@@ -286,4 +297,14 @@ thead {
 .inputSuccess {
   border-color: #28a745;
 } */
+th input,
+td input {
+  display: inline-block;
+}
+.btn-circle {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 12px;
+}
 </style>
