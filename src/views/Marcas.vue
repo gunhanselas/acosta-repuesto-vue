@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h6 class="text-uppercase mb-0" style="display: inline-block;">
-                        Marcas
+                        Marcasotas
                         </h6>
                         <b-button
                             v-b-modal.modalAgregarMar
