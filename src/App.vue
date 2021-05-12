@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header @toggleSideBar="isLeftSideBar = !isLeftSideBar"></Header>
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
     <div class="d-flex align-items-stretch">
-      <LeftSideBar></LeftSideBar>
+      <transition name="side-in">
+        <LeftSideBar v-if="isLeftSideBar"></LeftSideBar>
+      </transition>
       <router-view />
     </div>
   </div>
@@ -21,6 +23,13 @@ export default {
     Header,
     LeftSideBar,
   },
+  data () {
+    return {
+      isLeftSideBar: true,
+    }
+  }
 };
 </script>
 
+<style scoped>
+</style>

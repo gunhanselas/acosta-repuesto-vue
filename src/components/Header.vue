@@ -5,7 +5,7 @@
         <a
           href="#"
           class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"
-          @click="sidebarClass"
+          @click="$emit('toggleSideBar')"
           ><i class="fas fa-align-left"></i
         ></a>
         <router-link to="/"
@@ -25,8 +25,7 @@ export default {
   methods: {
     sidebarClass() {
       let elementDOM = document.getElementsByClassName("sidebar")[0].classList;
-      elementDOM.toggle("show");
-      elementDOM.toggle("shrink");
+      elementDOM.toggle("d-none");
     },
   },
 };

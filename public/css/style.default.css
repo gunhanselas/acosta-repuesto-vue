@@ -1245,33 +1245,30 @@ button {
 *
 */
 .sidebar {
-  width: 16rem;
   background: #fff;
   -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
   box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-}
-
-.sidebar.shrink {
   width: 6rem;
   text-align: center;
 }
 
-.sidebar.shrink .sidebar-link {
+
+.sidebar .sidebar-link {
   display: block;
 }
 
-.sidebar.shrink .sidebar-link span {
+.sidebar .sidebar-link span {
   display: block;
   font-size: 0.75rem;
 }
 
-.sidebar.shrink .sidebar-link i {
+.sidebar .sidebar-link i {
   margin: 0 !important;
 }
 
-.sidebar.shrink .collapse .sidebar-link, .sidebar.shrink .collapsing .sidebar-link {
+.sidebar .collapse .sidebar-link, .sidebar .collapsing .sidebar-link {
   -webkit-transition: none;
   transition: none;
   padding-left: 0.2rem !important;
